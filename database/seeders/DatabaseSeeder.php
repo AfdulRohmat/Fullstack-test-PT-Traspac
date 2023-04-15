@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             GroupsSeeder::class,
             PositionSeeder::class,
             ReligionSeeder::class,
-            WorkUnitSeeder::class
+            WorkUnitSeeder::class,
+            RoleSeeder::class
         ]);
     }
 }
