@@ -14,23 +14,48 @@ class EmployeController extends Controller
      */
     public function index(Request $request)
     {
-        $pageSize = $request->page_size ?? 10;
-        $page = $request->page ?? 1;
-        $employes = Employe::paginate($pageSize);
+        $perPage = $request->per_page ?? 10;
+        $search = $request->search ?? '';
+
+        $employes_query = Employe::with(['group:id,name', 'echelon:id,echelon', 'position:id,name', 'religion:id,religion', 'work_unit:id,work_unit']);
 
 
-        return ((EmployeResource::collection($employes->loadMissing(['group:id,name', 'echelon:id,echelon', 'position:id,name', 'religion:id,religion', 'work_unit:id,work_unit'])))->additional([
+        // search
+        if ($search) {
+            //  $nipSearch = $employes_query->where('nip', 'LIKE', '%' . $search . '%');
+            $employes_query->where('fullname', 'LIKE', '%' . $search . '%');
+        }
+
+        // pagination
+        if ($request->page) {
+            $employes = $employes_query->paginate($perPage);
+        } else {
+            $employes = $employes_query->get();
+        }
+
+
+        return response()->json([
             'meta' => [
                 'code' => 200,
-                'status' => 'success',
-                'message' => "Create data successfully."
+                'status' => 'Success',
+                'message' => "Get data successfully"
             ],
-            'current_page' => $page,
-            'per_page' => $pageSize,
-            'from' => 1,
-            'last_page' => $employes->lastPage(),
-            'total' => Employe::count(),
-        ]));
+            'data' => $employes
+        ], 200);
+
+
+        // return ((EmployeResource::collection($employes->loadMissing(['group:id,name', 'echelon:id,echelon', 'position:id,name', 'religion:id,religion', 'work_unit:id,work_unit'])))->additional([
+        //     'meta' => [
+        //         'code' => 200,
+        //         'status' => 'success',
+        //         'message' => "Create data successfully."
+        //     ],
+        //     'current_page' => $page,
+        //     'per_page' => $pageSize,
+        //     'from' => 1,
+        //     'last_page' => $employes->lastPage(),
+        //     'total' => Employe::count(),
+        // ]));
     }
 
     /**
