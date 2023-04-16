@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('employes', function (Blueprint $table) {
             $table->id();
-            $table->string('NIP', 100);
-            // relasi table users
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-
-            // relasi table genders
-            $table->unsignedBigInteger('gender_id');
-            $table->foreign('gender_id')->references('id')->on('genders');
+            $table->string('nip', 100);
+            $table->string('fullname', 255);
+            $table->string('tempat_lahir', 255)->nullable();
+            $table->string('tanggal_lahir', 255)->nullable();
+            $table->string('jenis_kelamin', 255)->nullable();
+            $table->string('alamat', 255)->nullable();
+            $table->string('picture', 255)->nullable();
+            $table->string('no_HP', 100)->nullable();
+            $table->string('npwp', 100)->nullable();
 
             // relasi table groups
             $table->unsignedBigInteger('group_id');
