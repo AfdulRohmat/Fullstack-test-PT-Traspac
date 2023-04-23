@@ -48,7 +48,7 @@ class AuthController extends Controller
         ]);
 
         $user = User::where('email', $request->email)->first();
-        
+
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['Email yang dimasukan salah.'],
@@ -79,6 +79,25 @@ class AuthController extends Controller
         $request->user()->currentAccessToken()->delete();
         return response()->json([
             'data' => [],
+            'meta' => [
+                'code' => 200,
+                'status' => 'success',
+                'message' => "Successfully logout"
+            ],
+        ], 200);
+    }
+
+    public function getDataUser(Request $request)
+    {
+        $user = auth()->user();
+        return response()->json([
+            'data' => [
+                'user' => [
+                    'id' => $user->id,
+                    'username' => $user->username,
+                    'email' => $user->email,
+                ]
+            ],
             'meta' => [
                 'code' => 200,
                 'status' => 'success',

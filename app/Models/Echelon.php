@@ -10,6 +10,7 @@ class Echelon extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'echelon',
     ];
 }
