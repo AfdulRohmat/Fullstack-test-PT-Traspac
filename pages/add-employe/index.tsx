@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
 import {
-  headersConfig,
   baseUrl,
   headersConfigWithToken,
 } from "@/network/NetworkSetup";
@@ -37,8 +36,6 @@ const AddEmploye = () => {
     register,
     handleSubmit,
     formState: { errors },
-    control,
-    getValues,
   } = useForm<FieldValues>({
     defaultValues: {
       nip: "",
