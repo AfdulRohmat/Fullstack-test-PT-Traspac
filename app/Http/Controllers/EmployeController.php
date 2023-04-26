@@ -21,11 +21,10 @@ class EmployeController extends Controller
     {
         $perPage = $request->per_page ?? 10;
         $search = $request->search ?? '';
-        $employes_query = Employe::with(['group:id,name', 'echelon:id,echelon', 'position:id,name', 'religion:id,religion', 'work_unit:id,work_unit']);
+        $employes_query = Employe::with(['group:id,name', 'echelon:id,name', 'position:id,name', 'religion:id,name', 'work_unit:id,name']);
 
         // search
         if ($search) {
-            //  $nipSearch = $employes_query->where('nip', 'LIKE', '%' . $search . '%');
             $employes_query->where('fullname', 'LIKE', '%' . $search . '%')->get();
         }
 
@@ -99,7 +98,7 @@ class EmployeController extends Controller
         $employe = Employe::create($request->all());
         // $employe->picture = $imageUrl;
 
-        return ((new EmployeResource($employe->loadMissing(['group:id,name', 'echelon:id,echelon', 'position:id,name', 'religion:id,religion', 'work_unit:id,work_unit'])))->additional([
+        return ((new EmployeResource($employe->loadMissing(['group:id,name', 'echelon:id,name', 'position:id,name', 'religion:id,name', 'work_unit:id,name'])))->additional([
             'meta' => [
                 'code' => 200,
                 'status' => 'success',
@@ -113,7 +112,7 @@ class EmployeController extends Controller
      */
     public function show(string $id)
     {
-        $employe = Employe::with(['group:id,name', 'echelon:id,echelon', 'position:id,name', 'religion:id,religion', 'work_unit:id,work_unit'])->findOrFail($id);
+        $employe = Employe::with(['group:id,name', 'echelon:id,name', 'position:id,name', 'religion:id,name', 'work_unit:id,name'])->findOrFail($id);
         return response()->json([
             'meta' => [
                 'code' => 200,
@@ -148,21 +147,16 @@ class EmployeController extends Controller
     {
         $user = User::findOrFail(auth()->id());
         $request->validate([
-            'nip' => ['required', 'string', 'min:5', 'max:255'],
-            'fullname' => ['required', 'string', 'min:5', 'max:255'],
-            'tempat_lahir' => ['required', 'string', 'min:5', 'max:255'],
-            'tanggal_lahir' => ['required', 'string', 'min:5', 'max:255'],
-            'jenis_kelamin' => ['required', 'string', 'min:1', 'max:1'],
-            'alamat' => ['required', 'string', 'min:5', 'max:255'],
+            'nip' => ['string', 'min:5', 'max:255'],
+            'fullname' => ['string', 'min:5', 'max:255'],
+            'tempat_lahir' => ['string', 'min:5', 'max:255'],
+            'tanggal_lahir' => ['string', 'min:5', 'max:255'],
+            'jenis_kelamin' => ['string', 'min:1', 'max:1'],
+            'alamat' => ['string', 'min:5', 'max:255'],
             'pictureFile' => ['nullable', 'image', 'mimes:jpg,jpeg,bmp,png'],
-            'no_HP' => ['required', 'string', 'min:5', 'max:255'],
-            'npwp' => ['required', 'string', 'min:5', 'max:255'],
-            'group_id' =>  ['required'],
-            'echelon_id' =>  ['required'],
-            'position_id' =>  ['required'],
-            'tempat_tugas' =>  ['required', 'string', 'max:255'],
-            'religion_id' =>  ['required'],
-            'work_unit_id' =>  ['required'],
+            'no_HP' => ['string', 'min:5', 'max:255'],
+            'npwp' => ['string', 'min:5', 'max:255'],
+            'tempat_tugas' =>  ['string', 'max:255'],
         ]);
 
         $employe = Employe::findOrFail($id);
@@ -186,7 +180,7 @@ class EmployeController extends Controller
         }
         $employe->update($request->all());
 
-        return ((new EmployeResource($employe->loadMissing(['group:id,name', 'echelon:id,echelon', 'position:id,name', 'religion:id,religion', 'work_unit:id,work_unit'])))->additional([
+        return ((new EmployeResource($employe->loadMissing(['group:id,name', 'echelon:id,name', 'position:id,name', 'religion:id,name', 'work_unit:id,name'])))->additional([
             'meta' => [
                 'code' => 200,
                 'status' => 'success',

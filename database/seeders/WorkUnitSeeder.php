@@ -14,15 +14,15 @@ class WorkUnitSeeder extends Seeder
     public function run(): void
     {
         DB::table('work_units')->insert([
-            ['work_unit' => "Kepala dinas"],
-            ['work_unit' => "Sekretaris dinas"],
-            ['work_unit' => "Sub Bagian umum dan Kepegawaian"],
-            ['work_unit' => "Sub Bagian keuangan"],
-            ['work_unit' => "Sub Bagian Program, Data, dan Informasi"],
-            ['work_unit' => "Bidang Kelembagaan dan Pemberdayaan"],
-            ['work_unit' => "Bidang Kelembagaan dan Pemberdayaan"],
-            ['work_unit' => "Bidang Penilaian dan Pengawasan"],
-            ['work_unit' => "Pejabat Fungsional"],
+            ['name' => "Kepala dinas"],
+            ['name' => "Sekretaris dinas"],
+            ['name' => "Sub Bagian umum dan Kepegawaian"],
+            ['name' => "Sub Bagian keuangan"],
+            ['name' => "Sub Bagian Program, Data, dan Informasi"],
+            ['name' => "Bidang Kelembagaan dan Pemberdayaan"],
+            ['name' => "Bidang Kelembagaan dan Pemberdayaan"],
+            ['name' => "Bidang Penilaian dan Pengawasan"],
+            ['name' => "Pejabat Fungsional"],
         ]);
     }
 }

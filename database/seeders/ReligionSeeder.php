@@ -14,12 +14,12 @@ class ReligionSeeder extends Seeder
     public function run(): void
     {
         DB::table('religions')->insert([
-            ['religion' => "Islam"],
-            ['religion' => "Kristen"],
-            ['religion' => "Katolik"],
-            ['religion' => "Hindu"],
-            ['religion' => "Budha"],
-            ['religion' => "Konghucu"],
+            ['name' => "Islam"],
+            ['name' => "Kristen"],
+            ['name' => "Katolik"],
+            ['name' => "Hindu"],
+            ['name' => "Budha"],
+            ['name' => "Konghucu"],
         ]);
     }
 }

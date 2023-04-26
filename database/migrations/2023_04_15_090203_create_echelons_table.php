@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('echelons', function (Blueprint $table) {
             $table->id();
-            $table->string('echelon');
+            $table->string('name');
             $table->timestamps();
         });
     }

@@ -12,7 +12,7 @@ class PositionController extends Controller
         $positions = Position::all()->map(function ($data) {
             return [
                 'id' => $data->id,
-                'position' => $data->name
+                'name' => $data->name
             ];
         });
 

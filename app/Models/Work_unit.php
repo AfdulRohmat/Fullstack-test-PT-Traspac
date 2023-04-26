@@ -11,6 +11,7 @@ class Work_unit extends Model
 
 
     protected $fillable = [
-        'work_unit',
+        'id',
+        'name',
     ];
 }

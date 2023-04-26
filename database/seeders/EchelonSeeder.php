@@ -14,11 +14,11 @@ class EchelonSeeder extends Seeder
     public function run(): void
     {
         DB::table('echelons')->insert([
-            ['echelon' => "Eselon I"],
-            ['echelon' => "Eselon II"],
-            ['echelon' => "Eselon III"],
-            ['echelon' => "Eselon IV"],
-            ['echelon' => "Eselon V"],
+            ['name' => "Eselon I"],
+            ['name' => "Eselon II"],
+            ['name' => "Eselon III"],
+            ['name' => "Eselon IV"],
+            ['name' => "Eselon V"],
         ]);
     }
 }

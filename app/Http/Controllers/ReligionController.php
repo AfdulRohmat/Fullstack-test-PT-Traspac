@@ -12,7 +12,7 @@ class ReligionController extends Controller
         $religion = Religion::all()->map(function ($data) {
             return [
                 'id' => $data->id,
-                'religion' => $data->religion
+                'name' => $data->name
             ];
         });
 

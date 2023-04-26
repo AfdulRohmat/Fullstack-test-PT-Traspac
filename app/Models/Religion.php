@@ -10,6 +10,7 @@ class Religion extends Model
     use HasFactory;
 
     protected $fillable = [
-        'religion',
+        'id',
+        'name',
     ];
 }

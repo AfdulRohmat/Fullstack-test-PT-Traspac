@@ -12,7 +12,7 @@ class EchelonController extends Controller
         $echelons = Echelon::all()->map(function ($data) {
             return [
                 'id' => $data->id,
-                'echelon' => $data->echelon
+                'name' => $data->name
             ];
         });
 

@@ -11,6 +11,6 @@ class Echelon extends Model
 
     protected $fillable = [
         'id',
-        'echelon',
+        'name',
     ];
 }

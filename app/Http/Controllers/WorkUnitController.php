@@ -12,7 +12,7 @@ class WorkUnitController extends Controller
         $work_units = Work_unit::all()->map(function ($data) {
             return [
                 'id' => $data->id,
-                'work_unit' => $data->work_unit
+                'name' => $data->name
             ];
         });
 
